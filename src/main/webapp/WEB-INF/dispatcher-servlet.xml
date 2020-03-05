@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+				       https://www.springframework.org/schema/beans/spring-beans.xsd
+				       http://www.springframework.org/schema/tx
+				       https://www.springframework.org/schema/tx/spring-tx.xsd
+				       http://www.springframework.org/schema/context
+				       https://www.springframework.org/schema/context/spring-context.xsd
+				       http://www.springframework.org/schema/mvc
+				       https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+				       
+	<!-- dispatcher-servlet.xml 是spring mvc里面的，控制器、拦截uri转发view
+　　		使用applicationContext.xml文件时是需要在web.xml中添加listener的  -->
+
+	<!-- 注解扫描 -->
+    <context:component-scan base-package="app.run.controller"></context:component-scan>
+    
+    <!-- 注解驱动，以使得访问路径与方法的匹配可以通过注解配置-->
+    <mvc:annotation-driven/>
+    <!-- 如果发现是静态资源的请求，就将该请求转由Web应用服务器默认的Servlet处理，如果不是静态资源的请求，才由DispatcherServlet继续处理 -->
+    <mvc:default-servlet-handler/>
+    
+    
+    <!-- 定义视图解析器 -->
+    <!-- 视图定位到/WEB/INF/jsp 这个目录下 -->
+    <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    	<property name="prefix" value="/WEB-INF/jsp/"></property>
+    	<property name="suffix" value=".jsp"></property>
+    </bean>
+    
+</beans>
