@@ -13,9 +13,43 @@
 				       http://www.springframework.org/schema/mvc
 				       https://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	
-	<!-- ApplicationContext.xml  是spring 全局配置文件，用来控制spring 特性的 -->
+	<!-- applicationContext.xml  是spring 全局配置文件，用来控制spring 特性的 -->
+	
+	<!-- 数据库配置文件 -->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
 	
 	<!-- 注解扫描 -->
 	<!--  <context:component-scan base-package="app.run.**"></context:component-scan>	-->
-	<context:component-scan base-package="app.run.service"></context:component-scan> 
+	<context:component-scan base-package="app.run.service"></context:component-scan>
+	
+	<!-- 数据连接池 -->
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+    	<property name="driverClassName" value="${database.driver}"/>
+    	<property name="url" value="${database.url}"/>
+    	<property name="username" value="${database.username}"/>
+    	<property name="password" value="${database.password}"/>
+    	<property name="maxIdle" value="${database.maxIdle}"/>
+    	<property name="maxWaitMillis" value="${database.maxWaitMillis}"/>
+    </bean>
+    
+    <!-- mybatis 配置 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    	<property name="dataSource" ref="dataSource"/>
+    	<property name="configLocation" value="classpath:mybatis_config.xml"></property>
+    </bean>
+    
+    <!-- 配置数据源事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    	<property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <!-- 开启注解事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    
+    <!-- 配置自动扫描mapper -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    	<property name="basePackage" value="app.run.dao"/>
+    	<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>	
+    	<property name="annotationClass" value="org.springframework.stereotype.Repository"/>
+    </bean>
 </beans>

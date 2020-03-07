@@ -19,6 +19,7 @@
 
 	<!-- 注解扫描 -->
     <context:component-scan base-package="app.run.controller"></context:component-scan>
+    <context:component-scan base-package="app.run.dao"></context:component-scan>
     
     <!-- 注解驱动，以使得访问路径与方法的匹配可以通过注解配置-->
     <mvc:annotation-driven/>

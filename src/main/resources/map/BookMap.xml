@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="app.run.dao.BookDao">
+
+	<!-- 映射规则 -->
+    <!-- id：设置ResultMap的id -->
+    <!-- type:指定映射到pojo -->
+	<resultMap id="bookResultMap" type="book">
+		<id		property="bookSn"				column="book_sn"				javaType="String"				jdbcType="VARCHAR"/>
+		<result property="bookName"				column="book_name"				javaType="String"				jdbcType="VARCHAR"/>
+		<result property="bookAuthor"			column="book_author"			javaType="String"				jdbcType="VARCHAR"/>
+		<result property="bookPublicationDate"	column="book_publication_date"	javaType="java.sql.Timestamp"	jdbcType="TIMESTAMP"/>
+		<result property="bookStorageDate" 		column="book_storage_date"		javaType="java.sql.Timestamp"	jdbcType="TIMESTAMP"/>
+		<result property="bookInfomation"		column="book_infomation"		javaType="String"				jdbcType="LONGVARCHAR"/>
+		<result property="bookStock"			column="book_stock"				javaType="Integer"				jdbcType="INTEGER"/>
+	</resultMap>
+
+	<insert id="insertBook" parameterType="book">
+		insert into books.book(book_sn, book_name, book_author, book_publication_date, book_storage_date, book_infomation, book_stock) 
+		values(#{bookSn}, #{bookName}, #{bookAuthor}, #{bookPublicationDate}, #{bookStorageDate}, #{bookInfomation}, #{bookStock})
+	</insert>
+	
+	<delete id="deleteBook" parameterType="string">
+		delete from books.book
+		where book_sn = #{bookSn}
+	</delete>
+	
+	<update id="updateBook" parameterType="book">
+		update books.book
+		set book_sn=#{bookSn},
+			book_name=#{bookName},
+			book_author=#{bookAuthor},
+			book_publication_date=#{bookPublicationDate},
+			book_storage_date=#{bookStorageDate},
+			book_infomation=#{bookInfomation},
+			book_stock=#{bookStock}
+		where book_sn = #{bookSn}
+	</update>
+	
+	<!-- 使用resultMap -->
+	<select id="getBook" parameterType="string" resultMap="bookResultMap">
+		select distinct *
+		from books.book
+		where book_sn = #{bookSn}
+	</select>
+	
+	<select id="findBook" parameterType="string" resultMap="bookResultMap">
+		select *
+		from books.book
+		where book_name like concat('%', #{bookName}, '%')
+	</select>
+</mapper>

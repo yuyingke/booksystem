@@ -11,8 +11,8 @@
   	<springframework.version>5.2.3.RELEASE</springframework.version>
   	<jackson.version>2.10.2</jackson.version>
   	<mysqldriver.version>8.0.17</mysqldriver.version>
-  	<mybatis.version>3.5.2</mybatis.version>
-  	<mybatis.spring.version>2.0.2</mybatis.spring.version>
+  	<mybatis.version>3.5.4</mybatis.version>
+  	<mybatis.spring.version>2.0.3</mybatis.spring.version>
   	<apache.commons.version>2.7.0</apache.commons.version>
   </properties>
   
@@ -112,6 +112,7 @@
 	    <artifactId>commons-pool2</artifactId>
 	    <version>${apache.commons.version}</version>
 	</dependency>
+	
   </dependencies>
   
   <build>
