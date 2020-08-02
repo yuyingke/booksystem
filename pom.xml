@@ -8,11 +8,11 @@
   
   <properties>
   	<javax.servlet.version>4.0.1</javax.servlet.version>
-  	<springframework.version>5.2.3.RELEASE</springframework.version>
-  	<jackson.version>2.10.2</jackson.version>
-  	<mysqldriver.version>8.0.17</mysqldriver.version>
-  	<mybatis.version>3.5.4</mybatis.version>
-  	<mybatis.spring.version>2.0.3</mybatis.spring.version>
+  	<springframework.version>5.2.7.RELEASE</springframework.version>
+  	<jackson.version>2.11.1</jackson.version>
+  	<mysqldriver.version>8.0.20</mysqldriver.version>
+  	<mybatis.version>3.5.5</mybatis.version>
+  	<mybatis.spring.version>2.0.5</mybatis.spring.version>
   	<apache.commons.version>2.7.0</apache.commons.version>
   </properties>
   
