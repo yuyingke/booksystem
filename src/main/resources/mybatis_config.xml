@@ -6,9 +6,11 @@
 		<!-- 别名配置 -->
 		<typeAliases>
 			<typeAlias alias="book" type="app.run.entity.Book"/>
+			<typeAlias alias="movie" type="app.run.entity.Movie"/>
 		</typeAliases>
 		
 		<mappers>
 			<mapper resource="map/BookMap.xml"/>
+			<mapper resource="map/MovieMap.xml"/>
 		</mappers>
 	</configuration>

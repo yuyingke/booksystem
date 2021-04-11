@@ -21,8 +21,6 @@ public class BookController {
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public ModelAndView getMovieJson(@RequestParam(name="bookSn", required=false, defaultValue="2210031") String bookSn) {
 		
-		
-		
 		Book book = bookServise.getBook(bookSn);
 		System.out.println(bookSn);
 		ModelAndView modelAndView = new ModelAndView();

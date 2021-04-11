@@ -7,6 +7,7 @@
 <title>首页</title>
 </head>
 <body>
-  	<a href="./book/">欢迎进入</a><br>
+  	<a href="./book/">book</a><br>
+  	<a href="./movie/">movie</a><br>
 </body>
 </html>
